@@ -12,8 +12,8 @@
 
 <h1 class="text-2xl font-semibold text-white">Code Exercise</h1>
 <nav>
-<a href="#" class="text-white font-normal text-xl mr-4">Login</a>
-<a href="#" class="text-white font-normal text-xl">Sign up</a>
+<a href="{{route('login')}}" class="text-white font-normal text-xl mr-4">Login</a>
+<a href="{{route('register')}}" class="text-white font-normal text-xl">Sign up</a>
 </nav>
 
 </div>
