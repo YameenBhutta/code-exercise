@@ -1,1 +1,3 @@
-<x-layout></x-layout>
+<x-layout>
+{{$name}}
+</x-layout>

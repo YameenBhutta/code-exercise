@@ -17,6 +17,7 @@
 </nav>
 
 </div>
-</header>    
+</header>   
+{{$slot}}
 </body>
 </html>
