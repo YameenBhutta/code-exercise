@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+Route::redirect('/', 'home');
 Route::get('/', [PostController::class, 'index']);
 
 Route::get('/dashboard', function () {

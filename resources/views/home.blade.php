@@ -1,5 +1,5 @@
-<x-layout>
+<x-guest-layout>
 
 <x-postCard :posts="$posts" />
 
-</x-layout>
+</x-guest-layout>
