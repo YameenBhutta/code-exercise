@@ -17,7 +17,9 @@
 </nav>
 
 </div>
-</header>   
+</header>  
+<div class="container mx-auto py-16">
 {{$slot}}
+</div>
 </body>
 </html>

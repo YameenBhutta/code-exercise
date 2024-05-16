@@ -1,3 +1,5 @@
 <x-layout>
-{{$name}}
+
+<x-postCard :posts="$posts" />
+
 </x-layout>

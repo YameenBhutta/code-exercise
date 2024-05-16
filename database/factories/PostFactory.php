@@ -16,9 +16,11 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
+    
+        $imageFileName = $this->faker->image(public_path('images'), 400, 300, null, false);
         return [
             'user_id' => 1,
-            'image' => fake()->image(),
+            'image' => 'images/' . $imageFileName,
             'title' => fake()->sentence(),
             'body' => fake()->paragraph(40),
         ];
