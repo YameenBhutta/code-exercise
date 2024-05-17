@@ -28,7 +28,6 @@
 </header>  
 <div class="bg-gray-100">
 <div class="container mx-auto ">
-
                 {{ $slot }}
            </div> 
         

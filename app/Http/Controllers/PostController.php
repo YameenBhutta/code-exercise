@@ -17,6 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $posts= Post::latest()->paginate(6);
+        // dd($posts);
    
         return view('/home', ['posts'=> $posts]);
     }
@@ -34,7 +35,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+    
+        // validation
+       $field = $request->validate([
+        'image' => ['required'],
+        'title' => ['required', 'max:150'],
+        'body' => ['required'] 
+        ]);
+        
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $field['image'] = 'images/' . $imageName;
+        }
+        // create
+        Auth::user()->posts()->create($field);
+        
+         return redirect()->back()->with('success', 'Your Post was Created');
     }
 
     /**
@@ -66,6 +83,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+    
+    dd('ok');
+      
     }
 }
