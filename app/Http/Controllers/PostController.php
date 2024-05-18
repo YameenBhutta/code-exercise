@@ -59,7 +59,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('posts.detail', ['post'=> $post]);
     }
 
     /**
@@ -67,15 +67,29 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', ['post'=> $post]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(Request $request, Post $post)
     {
-        //
+        $field = $request->validate([
+            'image' => ['required'],
+            'title' => ['required', 'max:150'],
+            'body' => ['required'] 
+            ]);
+            
+            if ($request->hasFile('image')) {
+                $imageName = time() . '.' . $request->image->extension();
+                $request->image->move(public_path('images'), $imageName);
+                $field['image'] = 'images/' . $imageName;
+            }
+            // Update
+           $post->update($field);
+            
+             return back()->with('success', 'Your Post was Created');
     }
 
     /**
@@ -84,7 +98,9 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
     
-    dd('ok');
+        $post->delete();
+        
+        return redirect('dashboard');
       
     }
 }
