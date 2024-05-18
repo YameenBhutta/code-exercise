@@ -1,7 +1,7 @@
 @props(['post'])
 
 <div class="bg-white shadow-lg">
-<img src="{{asset($post->image)}}" alt="Blog Post" class=" w-full"/>
+<img src="{{asset($post->image)}}" alt="Blog Post" class=" w-full h-80 object-cover object-top"/>
 
 <div class="px-4 py-8 ">
 <h2 class="text-xl font-medium leading-10">{{$post->title}}</h2>

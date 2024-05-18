@@ -1,4 +1,5 @@
 <x-guest-layout>
+    
 <div class="p-16">
     <img src="{{asset($post->image)}}" alt="Blog Post" class="w-full object-cover"/>
     <div class=" py-8">

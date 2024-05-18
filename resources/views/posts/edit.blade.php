@@ -1,12 +1,19 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    
-    </x-slot>
+        <div class="flex">
+           
+          
+            <a href="{{route('create')}}" class="text-white bg-green-700 hover:bg-green-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Create Post</a>
+            <form action="{{route('posts.destroy', $post)}}" method="post">
+                @csrf
+                @method('DELETE')
+                <button class="text-white bg-red-700 hover:bg-red-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Delete</button>
+                </form>
+        </div>
+        </x-slot>
 
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <a href="{{route('dashboard')}}">← Back to dashboard </a>
         <form enctype="multipart/form-data" action="{{route('posts.update', $post)}}" method="post" class=" mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
         @csrf
         @method('PUT')
