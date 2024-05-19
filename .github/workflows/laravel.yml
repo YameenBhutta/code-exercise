@@ -18,8 +18,15 @@ jobs:
     - uses: actions/checkout@v4
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+    - name: Debugging
+      run: |
+        echo "Current directory contents:"
+        ls -la
     - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      run: |
+        echo "Installing Composer dependencies..."
+        composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        echo "Composer dependencies installed."
     - name: Generate key
       run: php artisan key:generate
     - name: Directory Permissions
