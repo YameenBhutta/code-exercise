@@ -17,16 +17,24 @@
 </head>
 
 <body class="font-sans text-gray-900 antialiased">
+    @guest
     <header class="py-8 bg-slate-800">
         <div class="container mx-auto flex justify-between items-center px-6">
             <h1 class="text-2xl font-semibold text-white"><a href="/">Code Exercise</a></h1>
+            
             <nav>
                 <a href="{{ route('login') }}" class="text-white font-normal text-xl mr-4">Login</a>
                 <a href="{{ route('register') }}" class="text-white font-normal text-xl">Sign up</a>
             </nav>
-
+           
         </div>
     </header>
+    @endguest
+    @auth
+        
+
+    @include('layouts.navigation')
+    @endauth
     <div class="bg-gray-100">
         <div class="container mx-auto ">
             {{ $slot }}
