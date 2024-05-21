@@ -16,10 +16,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts= Post::latest()->paginate(6);
+        $posts = Post::latest()->paginate(6);
         // dd($posts);
-   
-        return view('/home', ['posts'=> $posts]);
+
+        return view('/home', ['posts' => $posts]);
     }
 
     /**
@@ -35,14 +35,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-    
+
         // validation
-       $field = $request->validate([
-        'image' => ['required'],
-        'title' => ['required', 'max:150'],
-        'body' => ['required'] 
+        $field = $request->validate([
+            'image' => ['required'],
+            'title' => ['required', 'max:150'],
+            'body' => ['required']
         ]);
-        
+
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
@@ -50,8 +50,8 @@ class PostController extends Controller
         }
         // create
         Auth::user()->posts()->create($field);
-        
-         return redirect()->back()->with('success', 'Your Post was Created');
+
+        return redirect()->back()->with('success', 'Your Post was Created');
     }
 
     /**
@@ -59,7 +59,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.detail', ['post'=> $post]);
+        return view('posts.detail', ['post' => $post]);
     }
 
     /**
@@ -67,7 +67,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', ['post'=> $post]);
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -78,18 +78,18 @@ class PostController extends Controller
         $field = $request->validate([
             'image' => ['required'],
             'title' => ['required', 'max:150'],
-            'body' => ['required'] 
-            ]);
-            
-            if ($request->hasFile('image')) {
-                $imageName = time() . '.' . $request->image->extension();
-                $request->image->move(public_path('images'), $imageName);
-                $field['image'] = 'images/' . $imageName;
-            }
-            // Update
-           $post->update($field);
-            
-             return back()->with('success', 'Your Post was Created');
+            'body' => ['required']
+        ]);
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $field['image'] = 'images/' . $imageName;
+        }
+        // Update
+        $post->update($field);
+
+        return back()->with('success', 'Your Post was Created');
     }
 
     /**
@@ -100,10 +100,9 @@ class PostController extends Controller
         if ($post->image && file_exists(public_path($post->image))) {
             unlink(public_path($post->image));
         }
-        
+
         $post->delete();
-        
+
         return redirect('dashboard');
-      
     }
 }
