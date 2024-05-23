@@ -2,7 +2,7 @@
 <div class="bg-white shadow-lg">
     <img src="{{ asset($post->image) }}" alt="Blog Post" class=" w-full h-80 object-cover object-top" />
     <div class="px-4 py-8 ">
-        <h2 class="text-xl font-medium leading-5 mb-5">{{ $post->title }}</h2>
+        <h2 class="text-2xl font-medium leading-6 mb-5">{{ $post->title }}</h2>
         <p class="mb-8">{{ Str::words($post->body, 30) }}</p>
         <div class="flex">
             <a href="{{ route('posts.show', $post) }}"
